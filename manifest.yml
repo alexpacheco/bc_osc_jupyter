@@ -1,12 +1,11 @@
 ---
-name: Jupyter
+name: Jupyter Notebook on Notchpeak shared
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch a [Jupyter] server using [Python] on the [Owens
+  This app will launch a [Jupyter Notebook] server using [Python] on the [Notchpeak
   cluster].
 
-  [Jupyter]: https://jupyter.org/
+  [Jupyter Notebook]: https://jupyter.org/
   [Python]: https://www.python.org/
-  [Owens cluster]: https://www.osc.edu/resources/technical_support/supercomputers/owens
