@@ -6,6 +6,8 @@
 An interactive app designed for OSC OnDemand that launches a Jupyter
 server within an Owens batch job.
 
+Modifications for CHPC.
+
 ## Prerequisites
 
 This Batch Connect app requires the following software be installed on the
