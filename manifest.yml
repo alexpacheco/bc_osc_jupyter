@@ -1,11 +1,17 @@
 ---
-name: Jupyter Notebook on Notchpeak shared
+name: Jupyter Notebook on Notchpeak
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
   This app will launch a [Jupyter Notebook] server using [Python] on the [Notchpeak
   cluster].
+ 
+  To start the job promptly, use notchpeak-shared account and partition.
+
+  [GPU specification] is optional for the partitions that have them.
 
   [Jupyter Notebook]: https://jupyter.org/
   [Python]: https://www.python.org/
+  [Notchpeak cluster]: https://www.chpc.utah.edu/documentation/policies/2.1GeneralHPCClusterPolicies.php#Pol2.1.6
+  [GPU specification]: https://www.chpc.utah.edu/documentation/guides/gpus-accelerators.php#overview
