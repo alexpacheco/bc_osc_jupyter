@@ -17,35 +17,34 @@ attributes:
   custom_environment:
     widget: text_area
     label: Environment Setup (drag text area to enlarge)
-    help: "Enter commands (module load, source activate, etc) to create your desired jupyter notebook environment; jupyter MUST be on your path. If you don't have one yet use 'module load python/3.5.2 R/3.4.2'"
+    help: "Enter commands (module load, source activate, etc) to create your desired jupyter notebook environment; jupyter MUST be on your path. If you don't have one yet use 'module load python/3.6.3 R/3.6.1'"
     value: |
-        module load python/3.5.2 R/3.4.2
-
-
+        module load python/3.6.3 R/3.6.1
 
   num_cores:
     widget: "number_field"
     label: "Number of cores"
     value: 1
-    help: "Maximum number of CPU cores on notchpeak-shared is 32."
+    help: "Maximum number of CPU cores on notchpeak-shared-short is 32."
     min: 1
     step: 1
   bc_num_hours:
     value: 1
     min: 1
     step: 1
-    help: "Maximum wall time on notchpeak-shared is 8 hours, otherwise 72 hours."
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, otherwise 72 hours."
   bc_account:
     label: "Account"
-    value: "notchpeak-shared"
+    value: "notchpeak-shared-short"
   bc_queue:
     label: "Partition"
-    value: "notchpeak-shared"
+    value: "notchpeak-shared-short"
   gpu_type:
     label: "GPU type:count"
     help: |
       - GPU type:
           - **none** - No GPU
+          - **k80** - Tesla K80 GPU(s) (double precision)
           - **1080ti** - GeForce 1080 Ti GPU(s) (single precision)
           - **2080ti** - GeForce 2080 Ti GPU(s) (single precision)
           - **titanv** - GeForce Titan V GPU(s) (single precision)
@@ -57,7 +56,6 @@ attributes:
 
 form:
   - custom_environment
-  - modules
   - num_cores
   - bc_num_hours
   - bc_account
