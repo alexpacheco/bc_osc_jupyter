@@ -14,14 +14,15 @@ export XDG_RUNTIME_DIR=""
 <%- unless context.modules.blank? -%>
 # Purge the module environment to avoid conflicts
 module purge
-
-# Load custom environment
-<%= context.custom_environment.gsub /\r\n?/, "\n" %>
+source /etc/profile.d/zlmod.sh
 
 # Load the require modules
 module load <%= context.modules %>
 
 # Activate conda environment
+module load conda/<%= context.conda_environment %>
+#
+# Load custom environment
 <%= context.custom_environment.gsub /\r\n?/, "\n" %>
 
 
@@ -34,4 +35,4 @@ echo "TIMING - Starting jupyter at: $(date)"
 
 # Launch the Jupyter Notebook Server
 set -x
-jupyter notebook --config="${CONFIG_FILE}" <%= context.extra_jupyter_args %>
+jupyter-notebook --config="${CONFIG_FILE}" <%= context.extra_jupyter_args %>

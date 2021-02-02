@@ -7,20 +7,22 @@ cluster: "sol"
 description: |
   This app will launch Jupyter Notebook on one Sol node.
 attributes:
-  modules: "anaconda/python_3.6"
+  modules: "anaconda3/2020.07"
+  conda_environment:
+    widget: select
+    label: Choose the conda environment you want to use
+    options:
+      - ["biofluids","biofluids"]
+      - ["bioinformatics","bioinformatics"]
+      - ["chem","chem"]
+      - ["mldl","mldl"]
+      - ["nlp","nlp"]
+      - ["r","r"]
   custom_environment:
     widget: text_area
-    label: Activate the conda environment you want to use (drag text area to enlarge)
+    label: Enter commands to launch another python environment
     help: |
-      - Activate the conda environment you want to use. anaconda/python_3.6 is loaded by default
-        - **leave field blank** - Use base environment
-        - **biofluids** - source activate biofluids
-        - **mldl** - source activate mldl
-        - **nlp** - source activate nlp
-        - **phonopy** - source activate phonopy
-        - **tensorflow** - source activate tensorflow
-        - **Enter commands to use your custom environment** 
-           - Unload anaconda/python_3.6 if you are using a different python install.
+      - anaconda3/2020.07 is loaded by default. Unload it to use another python module`
     value: ""
   custom_queue:
     label: Partition
@@ -37,6 +39,8 @@ attributes:
       - [ "im2080 partition, 28 cores, 48 hours, 5GB/core", "im2080" ]
       - [ "chem partition, 36 cores, 48 hours, 5GB/core", "chem" ]
       - [ "health partition, 36 cores, 48 hours, 5GB/core", "health" ]
+      - [ "hawkcpu partition, 52 cores, 48 hours, 7.4GB/core", "hawkcpu" ]
+      - [ "hawkgpu partition, 48 cores, 48 hours, 4GB/core", "hawkgpu" ]
       <% if /himem/ =~ result  %>
       - [ "himem-long, 16 cores, 168 hours, 32GB/core", "himem-long"]
       <% end %>
@@ -49,7 +53,7 @@ attributes:
     widget: "number_field"
     label: "Number of cores"
     value: 1
-    help: "Maximum number of CPU cores on Sol varies from 16 to 36."
+    help: "Maximum number of CPU cores is 52 on hawk."
     min: 1
     step: 1
   bc_num_slots: "1"
@@ -63,13 +67,24 @@ attributes:
     help: "Leave blank if using your default allocation."
     value: ""
   extra_jupyter_args: ""
+  gpus: 
+    label: "Number of GPUs"
+    value: 0
+    min: 0
+    max: 8
+    help: "Make sure you are using the correct partition above.<br />
+          lts-gpu, eng-gpu, im1080-gpu: Max 2 gpus per node,<br />
+          im2080-gpu: Max 4 gpus per node,<br />
+          hawkgpu: Max 8 gpus per node."
 form:
   - modules
+  - conda_environment
+  - custom_environment
   - extra_jupyter_args
   - bc_account
   - num_cores
   - bc_num_slots
   - bc_num_hours
   - custom_queue
-  - custom_environment
+  - gpus
   - bc_email_on_started
