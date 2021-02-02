@@ -20,9 +20,7 @@ source /etc/profile.d/zlmod.sh
 module load <%= context.modules %>
 
 # Activate conda environment
-<% if context.conda_environment != "None" >
-  module load conda/<%= context.conda_environment %>
-<% end %>
+  conda activate <%= context.conda_environment %>
 #
 # Load custom environment
 <%= context.custom_environment.gsub /\r\n?/, "\n" %>
